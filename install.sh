@@ -34,10 +34,10 @@ mkdir -p /home/pi/docker_data/influxdb
 docker run \
 --rm -e INFLUXDB_DB=iobroker \
 -e INFLUXDB_ADMIN_USER=admin \
--e INFLUXDB_ADMIN_PASSWORD=adminpassword \
+-e INFLUXDB_ADMIN_PASSWORD="adminpassword" \
 -e INFLUXDB_USER=iobroker \
--e INFLUXDB_USER_PASSWORD=password4iobrokerdb \
--v /home/pi/docker_data/influxdb:/var/lib/influxdb influxdb /init-influxdb.sh
+-e INFLUXDB_USER_PASSWORD="password4iobrokerdb" \
+-v /home/pi/docker_data/influxdb:/var/lib/influxdb influxdb /init-influxdb.sh #needs verification
 
 docker run -d \
 --name=influxdb \
@@ -45,4 +45,11 @@ docker run -d \
 -p 8086:8086 \
 --restart=always \
 -v /home/pi/docker_data/influxdb:/var/lib/influxdb influxdb
+
+mkdir -p /home/pi/docker_data/grafana
+docker run -d \
+-p 3000:3000  \
+--network=smart-home \
+--restart=always --name=grafana \
+-v /home/pi/docker_data/grafana:/var/lib/grafana grafana/grafana
 
