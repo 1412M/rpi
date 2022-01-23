@@ -37,14 +37,14 @@ docker run \
 -e INFLUXDB_ADMIN_PASSWORD="adminpassword" \
 -e INFLUXDB_USER=iobroker \
 -e INFLUXDB_USER_PASSWORD="password4iobrokerdb" \
--v /home/pi/docker_data/influxdb:/var/lib/influxdb influxdb /init-influxdb.sh #needs verification
+-v /home/pi/docker_data/influxdb:/var/lib/influxdb2 influxdb /init-influxdb.sh #needs verification
 
 docker run -d \
 --name=influxdb \
 --network=smart-home \
 -p 8086:8086 \
 --restart=always \
--v /home/pi/docker_data/influxdb:/var/lib/influxdb influxdb
+-v /home/pi/docker_data/influxdb:/var/lib/influxdb2 influxdb
 
 mkdir -p /home/pi/docker_data/grafana
 chown 472:472 /home/pi/docker_data/grafana #-R
