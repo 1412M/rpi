@@ -30,19 +30,19 @@ docker run -d \
   -v /home/pi/docker_data/iobroker/:/opt/iobroker  \
   iobroker/iobroker -p
 
-mkdir -p /docker/influxdb
+mkdir -p /home/pi/docker_data/influxdb
 docker run \
 --rm -e INFLUXDB_DB=iobroker \
 -e INFLUXDB_ADMIN_USER=admin \
 -e INFLUXDB_ADMIN_PASSWORD=adminpassword \
 -e INFLUXDB_USER=iobroker \
 -e INFLUXDB_USER_PASSWORD=password4iobrokerdb \
--v /docker/influxdb:/var/lib/influxdb influxdb /init-influxdb.sh
+-v /home/pi/docker_data/influxdb:/var/lib/influxdb influxdb /init-influxdb.sh
 
 docker run -d \
 --name=influxdb \
 --network=smart-home \
 -p 8086:8086 \
 --restart=always \
--v /docker/influxdb:/var/lib/influxdb influxdb
+-v /home/pi/docker_data/influxdb:/var/lib/influxdb influxdb
 
