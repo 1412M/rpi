@@ -47,6 +47,8 @@ docker run -d \
 -v /home/pi/docker_data/influxdb:/var/lib/influxdb influxdb
 
 mkdir -p /home/pi/docker_data/grafana
+chown 472:472 /home/pi/docker_data/grafana #-R
+
 docker run -d \
 -p 3000:3000  \
 --network=smart-home \
