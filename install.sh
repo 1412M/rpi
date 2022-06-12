@@ -57,7 +57,6 @@ docker run -d \
 
 docker run -d \
 --net=host \
--p 3000:3000  \
 -p "53:53/tcp" \
 -p "53:53/udp" \
 -p "67:67/udp" \ # Only required if you are using Pi-hole as your DHCP server
