@@ -55,3 +55,15 @@ docker run -d \
 --restart=always --name=grafana \
 -v /home/pi/docker_data/grafana:/var/lib/grafana grafana/grafana
 
+docker run -d \
+--net=host \
+-p 3000:3000  \
+-p "53:53/tcp" \
+-p "53:53/udp" \
+-p "67:67/udp" \ # Only required if you are using Pi-hole as your DHCP server
+-p "80:80/tcp" \
+--cap-add=NET_ADMIN \
+--restart=always --name=pihole \
+-v /home/pi/docker_data/pihole/etc:/etc/pihole \
+-v /home/pi/docker_data/pihole/dnsmasq.d:/etc/dnsmasq.d pihole/pihole:latest
+
