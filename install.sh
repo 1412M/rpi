@@ -62,7 +62,9 @@ docker run -d \
 -p "67:67/udp" \ # Only required if you are using Pi-hole as your DHCP server
 -p "80:80/tcp" \
 --cap-add=NET_ADMIN \
---restart=always --name=pihole \
+--restart=unless-stopped \
+--name=pihole \
+-e TZ='Europe/Berlin' \
 -v /home/pi/docker_data/pihole/etc:/etc/pihole \
 -v /home/pi/docker_data/pihole/dnsmasq.d:/etc/dnsmasq.d pihole/pihole:latest
 
