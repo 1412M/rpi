@@ -68,3 +68,14 @@ docker run -d \
 -v /home/pi/docker_data/pihole/etc:/etc/pihole \
 -v /home/pi/docker_data/pihole/dnsmasq.d:/etc/dnsmasq.d pihole/pihole:latest
 
+
+mkdir -p /home/pi/docker_data/ispy/config/
+mkdir -p /home/pi/docker_data/ispy/media/
+mkdir -p /home/pi/docker_data/ispy/commands
+
+docker run -it -p 8090:8090 -p 3478:3478/udp -p 50000-50010:50000-50010/udp \
+-v /home/pi/docker_data/ispy/config/:/agent/Media/XML/ \
+-v /home/pi/docker_data/ispy/media/:/agent/Media/WebServerRoot/Media/ \
+-v /home/pi/docker_data/ispy/commands:/agent/Commands/ \
+--name ispyagentdvr ispy-agent:latest
+
